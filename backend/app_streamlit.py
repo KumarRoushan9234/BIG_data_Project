@@ -21,7 +21,8 @@ def setup_spark_and_train():
 
     drop_cols = ['_c0', 'cc_num', 'first', 'last', 'gender', 'street', 'city', 'state',
                  'zip', 'job', 'dob', 'trans_num', 'merchant']
-    
+    fraudTrain = fraudTrain.drop(*drop_cols)
+    fraudTest = fraudTest.drop(*drop_cols)
 
     fraudTrain = fraudTrain.withColumn("trans_date_ts", unix_timestamp("trans_date_trans_time")).drop("trans_date_trans_time")
     fraudTest = fraudTest.withColumn("trans_date_ts", unix_timestamp("trans_date_trans_time")).drop("trans_date_trans_time")
